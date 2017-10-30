@@ -1,0 +1,5 @@
+<div class="note-list" *ngIf="notes.length">
+    
+    <noteItem *ngFor="let note of notes"[note]="note"></noteItem>
+  
+</div>

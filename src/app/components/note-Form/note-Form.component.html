@@ -1,0 +1,25 @@
+<div class="add">
+  <form class="note-form" (ngSubmit)="addNewNote();noteForm.reset()" #noteForm="ngForm" >
+
+      <div class="formItem">
+        <label for="date">Дата: </label>
+  
+        <input name="date" [(ngModel)]="newDate" type="date" required />
+      </div>
+
+      <div class="formItem">
+        <label for="time">Время: </label>
+  
+        <input name="time" [(ngModel)]="newTime" type="time" required />
+      </div>
+
+      <div class="formItem">
+        <input name="text" [(ngModel)]="newText" type="text"  placeholder="Текст напоминания" required />
+      </div>
+
+  
+      <button type="submit" [disabled]="noteForm.form.invalid" class="btn btn-info" id="frmBtn">Добавить</button>
+  
+
+  </form>
+</div>
