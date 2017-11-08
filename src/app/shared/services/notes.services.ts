@@ -1,27 +1,62 @@
-import {Injectable,OnInit} from '@angular/core'
-import{NoteRepo} from "../repos/noteRepo"
-import {Note} from '../entities/note'
+import {Injectable,OnInit} from '@angular/core';
+import {Note} from '../entities/note';
+import { Observable } from 'rxjs/Rx';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/filter';
+
+
 
 @Injectable()
 export class NotesServices implements OnInit{
-    notes:Note[];
+    private _notes:BehaviorSubject<Array<Note>>=new BehaviorSubject(new Array<Note>());
+    repoName:string;
+    private tempRepo:Note[]=[];
+    
 
 
-    constructor(private noteRepo:NoteRepo)
+    constructor()
     {
-        this.notes=[];
-    }
-    ngOnInit(){
-        this.notes= this.noteRepo.loadNoteRepo();
-    }
-
-    getNotes():Note[]
-    {
-        return this.noteRepo.loadNoteRepo();
+        this.repoName="_noteStorage";
+ 
+        if(localStorage.getItem(this.repoName)===null){
+            localStorage.setItem(this.repoName,JSON.stringify(this.tempRepo))
+        };
+        this._notes.next(JSON.parse(localStorage.getItem(this.repoName)))
     };
 
+    ngOnInit(){
+        
+        
+        
+    };
+    
+   
+
+    getAllNotes():Observable<Note[]>
+    {
+        this._notes.next(JSON.parse(localStorage.getItem(this.repoName)))
+        return this._notes.asObservable();
+       
+                                                  
+    }; 
+
+    
+ 
     addNote(date:Date,time:HTMLTimeElement,text:string){
-        this.noteRepo.saveToRepo(date,time,text);
+        
+        
+      
+        let tempo=this._notes.getValue();
+        let temp:Note =new Note(date,time,text);
+        tempo.push(temp);
+        localStorage.setItem(this.repoName,JSON.stringify(tempo));
+        this._notes.next(tempo);
+        
+        
+
+        
+        
     };
 
     

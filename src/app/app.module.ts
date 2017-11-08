@@ -1,28 +1,99 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatStepperModule,
+} from '@angular/material';
 
-import { NoteRepo } from './shared/repos/noteRepo';
+
 import { NotesServices } from './shared/services/notes.services';
 
 import { AppComponent } from './app.component';
 import { NoteFormComponent } from './components/note-Form/note-Form.component';
 import {NoteListComponent} from './components/noteList/noteList.component';
-import {NoteItemComponent} from './components/noteItem/noteItem.component'
+import {NoteItemComponent} from './components/noteItem/noteItem.component';
+import {ActionBarComponent} from './components/actionBar/actionBar.component'
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     NoteFormComponent,
     NoteListComponent,
-    NoteItemComponent
+    NoteItemComponent,
+    ActionBarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatStepperModule
     
   ],
-  
-  providers: [NoteRepo,NotesServices],
+  entryComponents:[NoteFormComponent],
+  providers: [NotesServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

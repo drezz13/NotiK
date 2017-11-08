@@ -1,7 +1,9 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,Inject } from '@angular/core';
 import {Note} from '../../shared/entities/note';
 // import {FormsModule} from '@angular/forms';
 import {NotesServices} from '../../shared/services/notes.services'
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
 
 
 @Component({
@@ -11,18 +13,20 @@ import {NotesServices} from '../../shared/services/notes.services'
 })
 export class NoteFormComponent implements OnInit {
 
-  newDate:Date;
-  newTime:HTMLTimeElement;
-  newText:string='';
+  // newDate:Date;
+  // newTime:HTMLTimeElement;
+  // newText:string='';
 
-  constructor(private notesService:NotesServices) { }
+  constructor(private notesService:NotesServices,
+    public dialogRef: MatDialogRef<NoteFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(){
 
   }
 
-  addNewNote(){
-    this.notesService.addNote(this.newDate,this.newTime,this.newText)
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
   

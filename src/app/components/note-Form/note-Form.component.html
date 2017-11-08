@@ -1,25 +1,55 @@
-<div class="add">
+<!-- <h1 mat-dialog-title>Добавить напоминание:</h1>
+<div mat-dialog-content>
   <form class="note-form" (ngSubmit)="addNewNote();noteForm.reset()" #noteForm="ngForm" >
 
-      <div class="formItem">
-        <label for="date">Дата: </label>
+        <div class="formItem">
+          <label for="date">Дата: </label>
   
-        <input name="date" [(ngModel)]="newDate" type="date" required />
-      </div>
+          <input name="date" [(ngModel)]="newDate" type="date" required />
+        </div>
 
-      <div class="formItem">
-        <label for="time">Время: </label>
+        <div class="formItem">
+          <label for="time">Время: </label>
   
-        <input name="time" [(ngModel)]="newTime" type="time" required />
-      </div>
+          <input name="time" [(ngModel)]="newTime" type="time" required />
+        </div>
 
-      <div class="formItem">
+        <div class="formItem">
         <input name="text" [(ngModel)]="newText" type="text"  placeholder="Текст напоминания" required />
-      </div>
+        </div>
 
   
-      <button type="submit" [disabled]="noteForm.form.invalid" class="btn btn-info" id="frmBtn">Добавить</button>
+        <button  mat-dialog-close type="submit" [disabled]="noteForm.form.invalid" class="btn btn-info" id="frmBtn">Добавить</button>
   
 
   </form>
-</div>
+</div> -->
+
+
+<h1 mat-dialog-title>Добавить напоминание:</h1><hr>
+
+  <div mat-dialog-content>
+
+      <span>Выберите дату:</span>
+      <mat-form-field >
+        <input ngModel name="date" #date="ngModel" matInput type="date" [(ngModel)]="data.newDate" required>
+      </mat-form-field><hr>
+
+      <span>Выберите время:</span>
+      <mat-form-field>
+        <input ngModel name="time" #time="ngModel" matInput type="time" [(ngModel)]="data.newTime" required>
+      </mat-form-field><hr>
+
+      <mat-form-field>
+        <input ngModel name="text" #text="ngModel" matInput  [(ngModel)]="data.newText" placeholder="Текст напоминания" required>
+      </mat-form-field>
+
+      <!-- <mat-form-field>
+        <input ngModel name="tags" #tags="ngModel" matInput  [(ngModel)]="data.tags">
+      </mat-form-field> -->
+    
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button [disabled]="date.invalid||time.invalid||text.invalid" [mat-dialog-close]="data" tabindex="2">Ok</button>
+    <button mat-button mat-dialog-close (click)="onNoClick()" >No Thanks</button>
+  </div>

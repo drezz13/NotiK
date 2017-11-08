@@ -9,7 +9,9 @@ import {Note} from '../../shared/entities/note'
 export class NoteItemComponent {
   @Input() note: Note;
 
-  constructor() { }
+  constructor() { 
+    this.note=null;
+  }
 
   
 }
