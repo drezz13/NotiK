@@ -1,42 +1,16 @@
-<!-- <h1 mat-dialog-title>Добавить напоминание:</h1>
-<div mat-dialog-content>
-  <form class="note-form" (ngSubmit)="addNewNote();noteForm.reset()" #noteForm="ngForm" >
 
-        <div class="formItem">
-          <label for="date">Дата: </label>
-  
-          <input name="date" [(ngModel)]="newDate" type="date" required />
-        </div>
-
-        <div class="formItem">
-          <label for="time">Время: </label>
-  
-          <input name="time" [(ngModel)]="newTime" type="time" required />
-        </div>
-
-        <div class="formItem">
-        <input name="text" [(ngModel)]="newText" type="text"  placeholder="Текст напоминания" required />
-        </div>
-
-  
-        <button  mat-dialog-close type="submit" [disabled]="noteForm.form.invalid" class="btn btn-info" id="frmBtn">Добавить</button>
-  
-
-  </form>
-</div> -->
-
-
-<h1 mat-dialog-title>Добавить напоминание:</h1><hr>
+<h4 mat-dialog-title>Добавить напоминание:</h4><hr>
 
   <div mat-dialog-content>
 
-      <span>Выберите дату:</span>
       <mat-form-field >
+        <span matPrefix>Дата:&nbsp;</span>
         <input ngModel name="date" #date="ngModel" matInput type="date" [(ngModel)]="data.newDate" required>
       </mat-form-field><hr>
 
-      <span>Выберите время:</span>
+      
       <mat-form-field>
+        <span matPrefix>Время:&nbsp;</span>
         <input ngModel name="time" #time="ngModel" matInput type="time" [(ngModel)]="data.newTime" required>
       </mat-form-field><hr>
 
@@ -44,12 +18,12 @@
         <input ngModel name="text" #text="ngModel" matInput  [(ngModel)]="data.newText" placeholder="Текст напоминания" required>
       </mat-form-field>
 
-      <!-- <mat-form-field>
-        <input ngModel name="tags" #tags="ngModel" matInput  [(ngModel)]="data.tags">
-      </mat-form-field> -->
+      <mat-form-field>
+        <input ngModel name="tags" #tags="ngModel" matInput  [(ngModel)]="data.tags" placeholder="Теги через запятую" required>
+      </mat-form-field>
     
   </div>
   <div mat-dialog-actions>
-    <button mat-button [disabled]="date.invalid||time.invalid||text.invalid" [mat-dialog-close]="data" tabindex="2">Ok</button>
-    <button mat-button mat-dialog-close (click)="onNoClick()" >No Thanks</button>
+    <button mat-button [disabled]="date.invalid||time.invalid||text.invalid||tags.invalid" [mat-dialog-close]="data" tabindex="2">Ok</button>
+    <button mat-button mat-dialog-close (click)="onNoClick()" >Отмена</button>
   </div>

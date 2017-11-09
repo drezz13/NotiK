@@ -1,0 +1,21 @@
+
+<mat-card>
+  <mat-form-field>
+      <input matInput type="text" placeholder="Ищем" (keyup)="search(searchInp.value)" #searchInp/>
+  </mat-form-field>
+  <br>
+
+  <mat-checkbox color="primary"[(ngModel)]="chbTag">Фильтровать по тегам</mat-checkbox>
+  <br>
+
+  <mat-form-field [hidden]='!chbTag' >
+      <input matInput type="text" placeholder="Теги через запятую" (keyup)="search(searchInp.value,tagsInp.value)" #tagsInp/>
+  </mat-form-field>
+
+</mat-card>
+
+
+
+  
+  <noteItem *ngFor="let note of filtered " [note]="note" ></noteItem>
+

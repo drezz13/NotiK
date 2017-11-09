@@ -13,9 +13,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class NoteFormComponent implements OnInit {
 
-  // newDate:Date;
-  // newTime:HTMLTimeElement;
-  // newText:string='';
+ 
 
   constructor(private notesService:NotesServices,
     public dialogRef: MatDialogRef<NoteFormComponent>,

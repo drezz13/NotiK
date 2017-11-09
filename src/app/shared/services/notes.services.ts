@@ -41,14 +41,20 @@ export class NotesServices implements OnInit{
                                                   
     }; 
 
+    search(req:string):Observable<Note[]>{
+
+        return this.getAllNotes().filter((val,ind)=>val[ind].text.includes(req))
+
+    }
+
     
  
-    addNote(date:Date,time:HTMLTimeElement,text:string){
+    addNote(date:Date,time:HTMLTimeElement,text:string,tags:string){
         
         
       
         let tempo=this._notes.getValue();
-        let temp:Note =new Note(date,time,text);
+        let temp:Note =new Note(date,time,text,tags);
         tempo.push(temp);
         localStorage.setItem(this.repoName,JSON.stringify(tempo));
         this._notes.next(tempo);

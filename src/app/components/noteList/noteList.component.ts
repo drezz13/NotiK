@@ -3,7 +3,6 @@ import {Note} from '../../shared/entities/note';
 import {NotesServices} from '../../shared/services/notes.services';
 import {NoteFormComponent} from '../note-Form/note-Form.component';
 import { Observable } from 'rxjs/Rx';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/filter'
 import 'rxjs/add/operator/map'
 
@@ -18,7 +17,7 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class NoteListComponent implements OnInit {
   notes:Note[]=[];
-  todayNotes:Note[]=[];
+  
 
   constructor(private noteService:NotesServices) 
   {

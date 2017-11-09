@@ -22,11 +22,12 @@ export class ActionBarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){this.noteService.addNote(result.newDate,result.newTime,result.newText);
+      if(result){this.noteService.addNote(result.newDate,result.newTime,result.newText,result.tags);
       };      
       
     });
 
   }
+  
 
 }

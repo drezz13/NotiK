@@ -10,3 +10,6 @@
     margin-right: auto;
     align-items: center;        
 }
+button:focus{
+    outline:none;
+}

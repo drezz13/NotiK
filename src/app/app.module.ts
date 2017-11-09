@@ -35,6 +35,8 @@ import {
   MatTooltipModule,
   MatStepperModule,
 } from '@angular/material';
+import {RouterModule} from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { NotesServices } from './shared/services/notes.services';
@@ -43,7 +45,8 @@ import { AppComponent } from './app.component';
 import { NoteFormComponent } from './components/note-Form/note-Form.component';
 import {NoteListComponent} from './components/noteList/noteList.component';
 import {NoteItemComponent} from './components/noteItem/noteItem.component';
-import {ActionBarComponent} from './components/actionBar/actionBar.component'
+import {ActionBarComponent} from './components/actionBar/actionBar.component';
+import {SearchComponent} from './components/search/search.component'
 
 
 
@@ -53,7 +56,8 @@ import {ActionBarComponent} from './components/actionBar/actionBar.component'
     NoteFormComponent,
     NoteListComponent,
     NoteItemComponent,
-    ActionBarComponent
+    ActionBarComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +93,18 @@ import {ActionBarComponent} from './components/actionBar/actionBar.component'
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatStepperModule
+    MatStepperModule,
+    RouterModule.forRoot([
+      {
+        path:'',
+        component:NoteListComponent
+      },
+      {
+        path:'search',
+        component:SearchComponent
+      }
+    ]),
+    ReactiveFormsModule
     
   ],
   entryComponents:[NoteFormComponent],

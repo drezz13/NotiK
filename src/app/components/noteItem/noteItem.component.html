@@ -1,9 +1,14 @@
-<div class="note-item">
-    <p>
+<mat-card class="note-item">
+    <mat-card-content>
         <b><span class="date">{{note?.date}}</span></b>
         в
         <b><span class="time">{{note?.time}}</span></b><br>
         <b>Вам нужно:</b>  
         <span class="text">{{note?.text}}</span>
-    </p>
-</div> 
+    </mat-card-content>
+    <mat-card-footer>
+        <span class="tags">
+            <b>Теги</b>: {{note?.tags}}
+        </span>
+    </mat-card-footer>
+</mat-card> 

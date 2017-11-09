@@ -1,21 +1,6 @@
 <div class="control-panel">
+  <button mat-icon-button routerLink=''><i class="material-icons">home</i></button>
   <button mat-icon-button (click)="openDialog()"><i class="material-icons">add_circle_outline</i></button>
-
-  <mat-expansion-panel [hideToggle]="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-                  <i class="material-icons">search</i>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          
-          <mat-form-field>
-            <input matInput placeholder="Поиск...">
-          </mat-form-field>
-          
-          
-          <button mat-button>Найти</button>
-          
-          
-       
-        </mat-expansion-panel>
+  <button mat-icon-button  routerLink='search'><i class="material-icons">search</i></button>
+            
 </div>

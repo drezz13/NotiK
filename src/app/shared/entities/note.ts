@@ -1,3 +1,3 @@
 export class Note{
-    constructor(public date:Date,public time:HTMLTimeElement,public text:string){}
+    constructor(public date:Date,public time:HTMLTimeElement,public text:string,public tags:string){}
 }
