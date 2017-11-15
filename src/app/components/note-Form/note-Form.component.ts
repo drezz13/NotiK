@@ -1,6 +1,5 @@
 import { Component,OnInit,Inject } from '@angular/core';
 import {Note} from '../../shared/entities/note';
-// import {FormsModule} from '@angular/forms';
 import {NotesServices} from '../../shared/services/notes.services'
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 

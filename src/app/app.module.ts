@@ -37,6 +37,9 @@ import {
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 import { NotesServices } from './shared/services/notes.services';
@@ -46,7 +49,18 @@ import { NoteFormComponent } from './components/note-Form/note-Form.component';
 import {NoteListComponent} from './components/noteList/noteList.component';
 import {NoteItemComponent} from './components/noteItem/noteItem.component';
 import {ActionBarComponent} from './components/actionBar/actionBar.component';
-import {SearchComponent} from './components/search/search.component'
+import {SearchComponent} from './components/search/search.component';
+import { LogInComponent } from './components/logIn/logIn.component';
+import { AuthService } from './shared/services/auth.service';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyDMUjk7V-XyO8MvlRZbdQvD4Om4cwH_Tv4",
+  authDomain: "notik-fire.firebaseapp.com",
+  databaseURL: "https://notik-fire.firebaseio.com",
+  projectId: "notik-fire",
+  storageBucket: "",
+  messagingSenderId: "615897669816"
+}
 
 
 
@@ -57,7 +71,8 @@ import {SearchComponent} from './components/search/search.component'
     NoteListComponent,
     NoteItemComponent,
     ActionBarComponent,
-    SearchComponent
+    SearchComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +112,10 @@ import {SearchComponent} from './components/search/search.component'
     RouterModule.forRoot([
       {
         path:'',
+        component:LogInComponent
+      },
+      {
+        path:'today',
         component:NoteListComponent
       },
       {
@@ -104,11 +123,13 @@ import {SearchComponent} from './components/search/search.component'
         component:SearchComponent
       }
     ]),
-    ReactiveFormsModule
-    
-  ],
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
+],
   entryComponents:[NoteFormComponent],
-  providers: [NotesServices],
+  providers: [NotesServices,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

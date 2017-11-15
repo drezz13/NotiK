@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NotesServices} from '../../shared/services/notes.services';
 import {MatDialog} from '@angular/material';
 import {NoteFormComponent} from '../note-Form/note-Form.component';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'actionBar',
@@ -9,8 +10,11 @@ import {NoteFormComponent} from '../note-Form/note-Form.component';
   styleUrls: ['./actionBar.component.css']
 })
 export class ActionBarComponent implements OnInit {
+  isDisabled:boolean;
 
-  constructor(private noteService:NotesServices, public dialog: MatDialog) { }
+  constructor(private noteService:NotesServices, public dialog: MatDialog,private authServ:AuthService) {
+    this.isDisabled=!this.authServ.isLoggedIn();
+   }
 
   ngOnInit() {
   }

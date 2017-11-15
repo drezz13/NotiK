@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-title>
+    <h6>Войдите или зарегестрируйтесь <br>
+      для продолжения работы.</h6>
+  </mat-card-title>
+
+  <mat-form-field>
+    <input matInput placeholder="Введте email" [formControl]="email" required>
+    <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+
+  <mat-form-field>
+    <input matInput placeholder="Введите пароль (минимум 6 символов)" [type]="hide ? 'password' : 'text'" [formControl]='pass' required>
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    <mat-error *ngIf="pass.invalid">{{getPassErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-card-actions>
+    <button mat-raised-button [disabled]="email.invalid||pass.invalid" (click)="onSignUp()">Зарегистрироваться</button>
+    <button mat-raised-button color="primary" [disabled]="email.invalid||pass.invalid">Войти</button>
+  </mat-card-actions>
+
+</mat-card>
