@@ -19,7 +19,7 @@
 
   <mat-card-actions>
     <button mat-raised-button [disabled]="email.invalid||pass.invalid" (click)="onSignUp()">Зарегистрироваться</button>
-    <button mat-raised-button color="primary" [disabled]="email.invalid||pass.invalid">Войти</button>
+    <button mat-raised-button (click)='onLogIn()' color="primary" [disabled]="email.invalid||pass.invalid">Войти</button>
   </mat-card-actions>
 
 </mat-card>

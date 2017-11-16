@@ -1,13 +1,16 @@
-mat-card{
+mat-card.note-item{
     margin-top: 10px;
-    width: 600px;
+    width:100%;
+    min-width: 320px;
+    overflow-wrap:break-word; 
+    
 }
 .tags{
     font-size: 12px;
     
 }
 mat-card-footer{
-    width:120px;
+    width:20%;
     margin-left:auto;
     margin-right:5px;
 

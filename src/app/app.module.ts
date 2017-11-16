@@ -43,6 +43,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 import { NotesServices } from './shared/services/notes.services';
+import{ AuthGuard} from './shared/services/authGuard.service';
 
 import { AppComponent } from './app.component';
 import { NoteFormComponent } from './components/note-Form/note-Form.component';
@@ -51,7 +52,7 @@ import {NoteItemComponent} from './components/noteItem/noteItem.component';
 import {ActionBarComponent} from './components/actionBar/actionBar.component';
 import {SearchComponent} from './components/search/search.component';
 import { LogInComponent } from './components/logIn/logIn.component';
-import { AuthService } from './shared/services/auth.service';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDMUjk7V-XyO8MvlRZbdQvD4Om4cwH_Tv4",
@@ -74,6 +75,7 @@ export const firebaseConfig = {
     SearchComponent,
     LogInComponent
   ],
+  
   imports: [
     BrowserModule,
     FormsModule,
@@ -116,11 +118,14 @@ export const firebaseConfig = {
       },
       {
         path:'today',
-        component:NoteListComponent
+        component:NoteListComponent,
+        canActivate:[ AuthGuard]
+        
       },
       {
         path:'search',
-        component:SearchComponent
+        component:SearchComponent,
+        canActivate:[ AuthGuard]
       }
     ]),
     ReactiveFormsModule,
@@ -129,7 +134,7 @@ export const firebaseConfig = {
     AngularFireAuthModule
 ],
   entryComponents:[NoteFormComponent],
-  providers: [NotesServices,AuthService],
+  providers: [NotesServices, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

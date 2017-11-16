@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {NotesServices} from '../../shared/services/notes.services';
 import {MatDialog} from '@angular/material';
 import {NoteFormComponent} from '../note-Form/note-Form.component';
-import { AuthService } from '../../shared/services/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'actionBar',
@@ -12,9 +14,18 @@ import { AuthService } from '../../shared/services/auth.service';
 export class ActionBarComponent implements OnInit {
   isDisabled:boolean;
 
-  constructor(private noteService:NotesServices, public dialog: MatDialog,private authServ:AuthService) {
-    this.isDisabled=!this.authServ.isLoggedIn();
-   }
+  constructor(private noteService:NotesServices, public dialog: MatDialog,
+              private authServ:AngularFireAuth)
+ {
+    this.authServ.authState.subscribe(
+                              (user)=>{if (user) {
+                                        this.isDisabled = false;
+                                        }
+                                      else {
+                                        this.isDisabled = true;
+                                      }
+                                    })
+  }
 
   ngOnInit() {
   }
@@ -31,6 +42,12 @@ export class ActionBarComponent implements OnInit {
       
     });
 
+  }
+
+  logOut(){
+    this.authServ
+    .auth
+    .signOut();
   }
   
 
