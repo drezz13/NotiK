@@ -8,8 +8,11 @@ import { isNullOrUndefined } from 'util';
 
 @Injectable()
 export class AuthGuard {
+  user: Observable<firebase.User>;
 
-  constructor(private af:AngularFireAuth, private router:Router){}
+  constructor(private af:AngularFireAuth, private router:Router){
+    this.user = af.authState;
+  }
 
 
   canActivate(): Observable<boolean> {

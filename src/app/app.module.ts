@@ -38,12 +38,13 @@ import {
 import {RouterModule} from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 
 
 import { NotesServices } from './shared/services/notes.services';
 import{ AuthGuard} from './shared/services/authGuard.service';
+import { AuthService } from './shared/services/auth.service';
 
 import { AppComponent } from './app.component';
 import { NoteFormComponent } from './components/note-Form/note-Form.component';
@@ -52,6 +53,10 @@ import {NoteItemComponent} from './components/noteItem/noteItem.component';
 import {ActionBarComponent} from './components/actionBar/actionBar.component';
 import {SearchComponent} from './components/search/search.component';
 import { LogInComponent } from './components/logIn/logIn.component';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+
+
 
 
 export const firebaseConfig = {
@@ -129,12 +134,13 @@ export const firebaseConfig = {
       }
     ]),
     ReactiveFormsModule,
+    AngularFirestoreModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
 ],
   entryComponents:[NoteFormComponent],
-  providers: [NotesServices, AuthGuard],
+  providers: [NotesServices, AuthGuard,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

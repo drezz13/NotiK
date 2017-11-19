@@ -1,6 +1,6 @@
 <div class="control-panel">
-  <button mat-icon-button [disabled]='isDisabled' routerLink='today'><i class="material-icons">home</i></button>
-  <button mat-icon-button [disabled]='isDisabled' (click)="openDialog()"><i class="material-icons">note_add</i></button>
-  <button mat-icon-button  [disabled]='isDisabled' routerLink='search'><i class="material-icons">search</i></button>
-  <button mat-icon-button class='logout' [disabled]='isDisabled' routerLink='' (click)="logOut()"><i class="material-icons ">exit_to_app</i></button>         
+  <button matTooltip="Напоминания на сегодня" mat-icon-button [disabled]='isDisabled' routerLink='today'><i class="material-icons">home</i></button>
+  <button  matTooltip="Добавить напоминание" mat-icon-button [disabled]='isDisabled' (click)="openDialog()"><i class="material-icons">note_add</i></button>
+  <button matTooltip="Поиск" mat-icon-button  [disabled]='isDisabled' routerLink='search'><i class="material-icons">search</i></button>
+  <button matTooltip="Выйти" mat-icon-button class='logout' [disabled]='isDisabled' routerLink='' (click)="logOut()"><i class="material-icons ">exit_to_app</i></button>         
 </div>

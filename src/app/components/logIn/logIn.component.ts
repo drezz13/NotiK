@@ -6,6 +6,7 @@ import {FormControl, Validators} from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-logIn',
@@ -18,7 +19,7 @@ export class LogInComponent implements OnInit {
   pass = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9]+'),Validators.minLength(6)]);
   hide=true;
 
-  constructor(private authService:AngularFireAuth,private router:Router ) {
+  constructor(private authService:AuthService,private router:Router ) {
     
   }
 
@@ -37,28 +38,13 @@ export class LogInComponent implements OnInit {
   }
 
   onSignUp(){
-    this.authService
-    .auth
-    .createUserWithEmailAndPassword(this.email.value, this.pass.value)
-    .then((success)=>{
-      this.authService.auth.signInWithEmailAndPassword(this.email.value,this.pass.value);
-      this.router.navigate(['/today']);})
-    .catch(err => {
-      console.log('Something went wrong:',err.message);
-    });
+    this.authService.signUp(this.email.value,this.pass.value);
   }
+  
   onLogIn(){
-    this.authService
-    .auth
-    .signInWithEmailAndPassword(this.email.value, this.pass.value)
-    .then(
-      (success) => {
-      console.log(success);
-      this.router.navigate(['/today']);
-    })
-    .catch(err => {
-      console.log('Something went wrong:',err.message);
-    });
+  
+    this.authService.logIn(this.email.value,this.pass.value);
+    
   }
   
 

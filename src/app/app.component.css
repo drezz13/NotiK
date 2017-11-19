@@ -36,10 +36,19 @@ header{
     margin-right: auto;
     align-items: center;
 }
-actionBar{
+actionBar {
     width:100%;
     min-width: 320px;
+    max-width:800px;
     
 }
+.routedCont{
+    width:100%;
+    min-width: 320px;
+    max-width:800px;
+    
+}
+
+
 
 

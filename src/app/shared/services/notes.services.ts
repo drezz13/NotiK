@@ -1,69 +1,52 @@
-import {Injectable,OnInit} from '@angular/core';
-import {Note} from '../entities/note';
-import { Observable } from 'rxjs/Rx';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase/app'
 import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import { Note } from '../entities/note';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { AuthService } from './auth.service';
 
 
 
 @Injectable()
 export class NotesServices implements OnInit{
-    private _notes:BehaviorSubject<Array<Note>>=new BehaviorSubject(new Array<Note>());
-    repoName:string;
-    private tempRepo:Note[]=[];
+    
+    _notes:AngularFireList<Note>=null;
+    userId:string;
+    notes:Array<Note>
+
+
+    constructor(private db: AngularFireDatabase, private afAuth: AuthService,private afa:AngularFireAuth) {
+        this.afa.authState.subscribe(user => {
+            if(user) this.userId = user.uid
+          })
+        }
+
     
 
-
-    constructor()
-    {
-        this.repoName="_noteStorage";
- 
-        if(localStorage.getItem(this.repoName)===null){
-            localStorage.setItem(this.repoName,JSON.stringify(this.tempRepo))
-        };
-        this._notes.next(JSON.parse(localStorage.getItem(this.repoName)))
-    };
-
-    ngOnInit(){
+    ngOnInit(): void {
         
-        
-        
-    };
-    
-   
-
-    getAllNotes():Observable<Note[]>
-    {
-        this._notes.next(JSON.parse(localStorage.getItem(this.repoName)))
-        return this._notes.asObservable();
-       
-                                                  
-    }; 
-
-    search(req:string):Observable<Note[]>{
-
-        return this.getAllNotes().filter((val,ind)=>val[ind].text.includes(req))
-
     }
+
+    
+    getAllNotes():Observable<Note[]> {
+        if (!this.userId) return;
+        this._notes = this.db.list<Note>(`notes/${this.userId}`);
+        return this._notes.valueChanges().map(Note.fromJsonList)
+      }
 
     
  
     addNote(date:Date,time:HTMLTimeElement,text:string,tags:string){
         
-        
-      
-        let tempo=this._notes.getValue();
         let temp:Note =new Note(date,time,text,tags);
-        tempo.push(temp);
-        localStorage.setItem(this.repoName,JSON.stringify(tempo));
-        this._notes.next(tempo);
-        
-        
+        this._notes.push(temp)
 
-        
-        
     };
+    
 
     
 }

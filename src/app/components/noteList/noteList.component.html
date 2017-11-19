@@ -1,3 +1,10 @@
+<mat-card class="none"  *ngIf="notes.length===0">
+    <mat-card-content>
+        <p>Напоминания отсутсвуют</p>
+    </mat-card-content>
+</mat-card>
 
-<noteItem *ngFor="let note of notes " [note]="note" ></noteItem>
+
+<noteItem  *ngFor="let note of notes " [note]="note" ></noteItem>
+
  

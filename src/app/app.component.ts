@@ -11,10 +11,10 @@ import {NotesServices} from './shared/services/notes.services'
 
 @Injectable()
 export class AppComponent {
-  notes;
+ 
 
   constructor(private noteService:NotesServices){
-    this.noteService.getAllNotes().subscribe(notes=>this.notes=notes);
+    
   }
 
   

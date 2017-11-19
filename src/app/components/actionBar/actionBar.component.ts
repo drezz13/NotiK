@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material';
 import {NoteFormComponent} from '../note-Form/note-Form.component';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../../shared/services/auth.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ActionBarComponent implements OnInit {
   isDisabled:boolean;
 
   constructor(private noteService:NotesServices, public dialog: MatDialog,
-              private authServ:AngularFireAuth)
+              private authServ:AuthService)
  {
     this.authServ.authState.subscribe(
                               (user)=>{if (user) {
@@ -45,9 +46,7 @@ export class ActionBarComponent implements OnInit {
   }
 
   logOut(){
-    this.authServ
-    .auth
-    .signOut();
+    this.authServ.logOut();
   }
   
 

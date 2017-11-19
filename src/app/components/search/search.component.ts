@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
   chbTag:boolean;
 
   notes:Note[]=[];
-  filtered:Note[]=[]
+  filtered:Note[]=[];
   
 
   constructor(private noteService:NotesServices) 
@@ -32,14 +32,11 @@ export class SearchComponent implements OnInit {
   
   ngOnInit(){
     this.noteService.getAllNotes().subscribe(val=>this.notes=this.filtered=val);
-
   };
 
   search(txt:string,tag:string=''){
-    this.filtered=this.notes.filter(item=>item.text.includes(txt)||item.tags.includes(txt))
-    if(this.chbTag){
-      this.filtered=this.notes.filter(item=>item.text.includes(txt)||item.tags.includes(txt)&&item.tags.includes(tag))
-    }
+      this.filtered=this.notes.filter(item=>(item.text.includes(txt)||item.tags.includes(txt))&&item.tags.includes(tag))
+  
   }
 
   
